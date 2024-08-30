@@ -8,6 +8,7 @@ import torch.nn.functional as F
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+
 class HandGestureCNN(nn.Module):
     def __init__(self):
         super(HandGestureCNN, self).__init__()
@@ -33,13 +34,15 @@ class HandGestureCNN(nn.Module):
 model = HandGestureCNN().to(device)
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 criterion = nn.CrossEntropyLoss()
-class_labels = ['up', 'down', 'left', 'right', 'select']
+class_labels = ["up", "down", "left", "right", "select"]
 
 
 def continuous_learning():
     print("Starting continuous learning mode. Press 'q' to quit.")
     mp_hands = mp.solutions.hands
-    hands = mp_hands.Hands(static_image_mode=False, max_num_hands=1, min_detection_confidence=0.5)
+    hands = mp_hands.Hands(
+        static_image_mode=False, max_num_hands=1, min_detection_confidence=0.5
+    )
     cap = cv2.VideoCapture(0)
 
     while True:
@@ -80,17 +83,26 @@ def continuous_learning():
                 _, predicted = torch.max(outputs, 1)
                 gesture = class_labels[predicted.item()]
                 print(f"Predicted gesture: {gesture}")
-                cv2.putText(frame, f'Gesture: {gesture}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
+                cv2.putText(
+                    frame,
+                    f"Gesture: {gesture}",
+                    (10, 30),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    1,
+                    (0, 255, 0),
+                    2,
+                    cv2.LINE_AA,
+                )
 
                 # Manual correction
-                cv2.imshow('Frame', frame)
+                cv2.imshow("Frame", frame)
                 key = cv2.waitKey(0)
-                if key == ord('q'):
+                if key == ord("q"):
                     print("Exiting continuous learning mode.")
                     break
-                elif key in [ord('u'), ord('d'), ord('l'), ord('r'), ord('s')]:
-                    label_index = {'u': 0, 'd': 1, 'l': 2, 'r': 3, 's': 4}[chr(key)]
-                    print(f'Corrected to: {class_labels[label_index]}')
+                elif key in [ord("u"), ord("d"), ord("l"), ord("r"), ord("s")]:
+                    label_index = {"u": 0, "d": 1, "l": 2, "r": 3, "s": 4}[chr(key)]
+                    print(f"Corrected to: {class_labels[label_index]}")
 
                     # Update the model with the corrected label
                     labels = torch.tensor([label_index]).to(device)
@@ -100,7 +112,9 @@ def continuous_learning():
                     loss = criterion(outputs, labels)
                     loss.backward()
                     optimizer.step()
-                    torch.save(model.state_dict(), 'model_continuous_learning.pth')  # Save the model after each correction
+                    torch.save(
+                        model.state_dict(), "model_continuous_learning.pth"
+                    )  # Save the model after each correction
                     print("Model updated and saved.")
 
     cap.release()
