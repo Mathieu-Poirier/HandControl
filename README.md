@@ -130,7 +130,7 @@ This defines the order data will pass through our previous layers, making a forw
 - Async processing and game speeds: In order to uncap the framerate when sending images to the server, I made the program poll for frames in a way that does not interrupt other processes but this creates difficult timing for quickly switching between hand signs.
 - GPU acceleration: I had settled on 600x600 images for training since it could capture the full hand detail, but this proves costly if the model is not GPU or TPU accelerated. Training time can take multiple days.
 
-## How I was able to increase accuracy
+## A Note On Accuracy
 
 - Initally the model did not work without human intervention. I was able to use an assisted training method to manually update weights after the inital training and validation phase. I would receive predictions from the model and correct it by using the keyboard to give it the correct label.
 - This had the result of increasing accuracy on unseen input and reduced overfitting drastically
