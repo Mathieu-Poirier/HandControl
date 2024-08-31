@@ -8,9 +8,8 @@ This repository is a proof of concept for CNN based game controllers. The source
 
 ![image](images/screen2.PNG)
 The server returning sign predictions.
-## Install Guide
 
-### Cloning The Repository
+## Install Guide
 
 ### Prerequisites
 
