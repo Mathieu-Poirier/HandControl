@@ -292,14 +292,12 @@ def poll_for_frame():
                         y_min = max(0, y_min - 10)
                         y_max = min(h, y_max + 10)
 
-                        # Crop the hand region, excluding the green box
                         hand_img = current_frame[y_min:y_max, x_min:x_max]
 
-                        # Convert the hand image back to RGB for saving and sending
                         pil_img = Image.fromarray(hand_img)
                         pil_img = pil_img.resize(
                             (600, 600), Image.LANCZOS
-                        )  # Resize to 600x600 before sending
+                        )  
                         img_bytes = io.BytesIO()
                         pil_img.save(img_bytes, format="JPEG", quality=100)
                         img_bytes = img_bytes.getvalue()
