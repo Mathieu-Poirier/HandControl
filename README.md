@@ -11,10 +11,15 @@ The server returning sign predictions.
 
 ### Trained Controller Signs
 
+Up
 ![up](images/up_246.jpg)
+Down
 ![down](images/down_10.jpg)
+Left
 ![left](images/left_10.jpg)
+Right
 ![right](images/right_10.jpg)
+Select
 ![select](images/select_10.jpg)
 
 ## Install Guide
