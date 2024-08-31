@@ -126,7 +126,7 @@ This defines the order data will pass through our previous layers, making a forw
 
 ## Issues And Further Steps
 
-- Limited dataset diversity: The model was trained on 1000 images of each gesture [up, down, left, right, select] from my own hand, hence the model will probably be accurate only for my hand.
+- Limited dataset diversity: The model was trained on 2500 images of each gesture [up, down, left, right, select] from my own hand, hence the model will probably be accurate only for my hand.
 - Async processing and game speeds: In order to uncap the framerate when sending images to the server, I made the program poll for frames in a way that does not interrupt other processes but this creates difficult timing for quickly switching between hand signs.
 - GPU acceleration: I had settled on 600x600 images for training since it could capture the full hand detail, but this proves costly if the model is not GPU or TPU accelerated. Training time can take multiple days.
 
