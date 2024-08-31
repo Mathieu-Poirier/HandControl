@@ -6,6 +6,8 @@ This repository is a proof of concept for CNN based game controllers. The source
 
 ## HandControl Screenshots
 
+![image](images/screen1.png)
+
 ## Install Guide
 
 ### Cloning The Repository
