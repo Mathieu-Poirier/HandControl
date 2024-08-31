@@ -14,6 +14,7 @@ The server returning sign predictions.
 
 - Prerequisites
 Software: [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and a terminal emulator of your choice.
+
 Hardware: A webcam connected to the computer you're running the client on.
 
 This command will clone the repository into your current working directory under the HandControl folder. I recommend cloning projects into a generic "Repos" directory. In general clone it into a directory where you'll be able to quickly remove the code from your machine.
