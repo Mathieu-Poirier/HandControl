@@ -13,6 +13,7 @@ The server returning sign predictions.
 ### Cloning The Repository
 
 - Prerequisites
+
 Software: [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and a terminal emulator of your choice.
 
 Hardware: A webcam connected to the computer you're running the client on.
