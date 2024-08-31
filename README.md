@@ -79,10 +79,13 @@ def predict():
         print("An error occurred:", e)
         return "Internal Server Error", 500
 ```
-This snippet is from server.py.
-
+- This snippet is from server.py.
+The returned json response is used by the client to control game actions. The responses are aggregated and smoothed by taking the five most frequent predicted gestures.
 The flask app is running in a docker container through AWS EC2 and AWS container repository.
 
-This json response is used by the client to control game actions.
 
 ## The Model Design
+
+## Errors, Issues And Further Steps
+
+## Credit
