@@ -87,9 +87,55 @@ def predict():
 The returned json response is used by the client to control game actions. The responses are aggregated and smoothed by taking the five most frequent predicted gestures.
 The flask app is running in a docker container through AWS EC2 and AWS container repository.
 
-
 ## The Model Design
 
-## Errors, Issues And Further Steps
+```
+self.conv1 = nn.Conv2d(3, 32, kernel_size=3, stride=1, padding=1)
+# This will apply a 2 dimensional convolution over an input signal which are our hand images, ultimately it converts the input singal into tensors for further processing.
+
+self.bn1 = nn.BatchNorm2d(32)
+# Normalizes layer inputs (constrains input values) and allows for less parameter configuration.
+
+self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)
+Optimizes the features that the CNN is looking for in the image.
+
+self.dropout = nn.Dropout(0.5)
+Randomly zeroes out some values to prevent overfitting.
+
+self.fc1 = nn.Linear(64 * 150 * 150, 128)
+The vector is resized to 128 after optimizing the feature map.
+
+```
+Function for our forward passes:
+```
+def forward(self, x):
+    x = self.pool(F.relu(self.bn1(self.conv1(x))))
+
+    x = self.pool(F.relu(self.bn2(self.conv2(x))))
+
+    x = x.view(-1, 64 * 150 * 150)
+
+    x = self.dropout(F.relu(self.fc1(x)))
+
+    x = self.fc2(x)
+
+    return x
+
+```
+
+This defines the order data will pass through our previous layers, making a forward pass.
+
+## Issues And Further Steps
+
+- Limited dataset diversity: The model was trained on 1000 images of each gesture [up, down, left, right, select] from my own hand, hence the model will probably be accurate only for my hand.
+- Async processing and game speeds: In order to uncap the framerate when sending images to the server, I made the program poll for frames in a way that does not interrupt other processes but this creates difficult timing for quickly switching between hand signs.
+- GPU acceleration: I had settled on 600x600 images for training since it could capture the full hand detail, but this proves costly if the model is not GPU or TPU accelerated. Training time can take multiple days.
+
+## How I was able to increase accuracy
+
+- Initally the model did not work without human intervention. I was able to use an assisted training method to manually update weights after the inital training and validation phase. I would receive predictions from the model and correct it by using the keyboard to give it the correct label.
+- This had the result of increasing accuracy on unseen input and reduced overfitting drastically
 
 ## Credit
+
+Thank you to baraltech for the Tic-Tac-Toe game base code [Video](https://www.youtube.com/watch?v=IL_PMGVxEUY)
