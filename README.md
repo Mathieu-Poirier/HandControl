@@ -97,13 +97,13 @@ self.bn1 = nn.BatchNorm2d(32)
 # Normalizes layer inputs (constrains input values) and allows for less parameter configuration.
 
 self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)
-Optimizes the features that the CNN is looking for in the image.
+# Optimizes the features that the CNN is looking for in the image.
 
 self.dropout = nn.Dropout(0.5)
-Randomly zeroes out some values to prevent overfitting.
+# Randomly zeroes out some values to prevent overfitting.
 
 self.fc1 = nn.Linear(64 * 150 * 150, 128)
-The vector is resized to 128 after optimizing the feature map.
+# The vector is resized to 128 after optimizing the feature map.
 
 ```
 Function for our forward passes:
@@ -120,7 +120,6 @@ def forward(self, x):
     x = self.fc2(x)
 
     return x
-
 ```
 
 This defines the order data will pass through our previous layers, making a forward pass.
