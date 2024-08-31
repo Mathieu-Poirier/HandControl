@@ -9,6 +9,14 @@ This repository is a proof of concept for CNN based game controllers. The source
 ![image](images/screen2.PNG)
 The server returning sign predictions.
 
+### Trained Controller Signs
+
+![up](images/up_246.jpg)
+![down](images/down_10.jpg)
+![left](images/left_10.jpg)
+![right](images/right_10.jpg)
+![select](images/select_10.jpg)
+
 ## Install Guide
 
 ### Prerequisites
