@@ -53,12 +53,8 @@ game_finished = False
 current_frame = None
 hand_detected = False  # Indicates if a hand is detected
 
-# Lock to ensure thread safety
 frame_lock = threading.Lock()
 
-# Directory to save the images
-saved_images_dir = "sent_images"
-os.makedirs(saved_images_dir, exist_ok=True)
 
 
 def render_board():
@@ -88,7 +84,7 @@ def render_board():
         i, j = cursor_pos
         cursor_x = j * 300 + 150 - cursor_size // 2  # Center cursor horizontally
         cursor_y = i * 300 + 150 - cursor_size // 2  # Center cursor vertically
-        SCREEN.blit(cursor_surface, (cursor_x + 64, cursor_y + 64))
+        SCREEN.blit(cursor_surface, (cursor_x, cursor_y))
 
     pygame.display.update()
 
@@ -308,9 +304,6 @@ def poll_for_frame():
                         pil_img.save(img_bytes, format="JPEG", quality=100)
                         img_bytes = img_bytes.getvalue()
 
-                        # Save the hand region locally
-                        save_path = f"hand_{frame_counter}.jpg"
-                        pil_img.save(save_path)
                         frame_counter += 1
 
                         # Send the hand image to the server
@@ -349,3 +342,4 @@ if __name__ == "__main__":
     run_game()
     cap.release()
     cv2.destroyAllWindows()
+    exit(0)
