@@ -35,9 +35,17 @@ Select
 
 ### Prerequisites
 
-Software: [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and a terminal emulator of your choice.
+Software: 
 
-Hardware: A webcam connected to the computer you're running the client on.
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) 
+
+- Terminal emulator of your choice.
+
+- [Python](https://www.python.org/downloads/) and Pip
+
+Hardware: 
+
+- A webcam connected to the computer you're running the client on.
 
 ### Cloning The Repository
 
