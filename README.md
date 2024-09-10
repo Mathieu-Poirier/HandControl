@@ -41,7 +41,7 @@ Software:
 
 - Terminal emulator of your choice.
 
-- [Python](https://www.python.org/downloads/) and Pip
+- [Python](https://www.python.org/downloads/) and PIP
 
 Hardware: 
 
